@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">CST2335_Final_Project</string>
     <string name="car_charging">Car Charging</string>
+    <string name="top_headlines">Top HeadLines</string>
 </resources>
