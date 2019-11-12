@@ -1,4 +1,4 @@
-package com.example.cst2335_final_project.Models;
+package com.example.cst2335_final_project.NewsAPI.News_API_Models;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
