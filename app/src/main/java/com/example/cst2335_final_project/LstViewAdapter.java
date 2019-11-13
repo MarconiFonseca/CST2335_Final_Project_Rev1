@@ -11,7 +11,6 @@ import android.widget.Filter;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
@@ -84,7 +83,7 @@ public class LstViewAdapter extends ArrayAdapter<MainActivity.Apps> {
 
         final MainActivity.Apps currentApi = getItem(position);
 
-        Toast.makeText(getContext(), "CST 2335", Toast.LENGTH_SHORT).show();
+
 
 
         TextView nameTextView = (TextView) listItemView.findViewById(R.id.api_name);
@@ -144,8 +143,8 @@ public class LstViewAdapter extends ArrayAdapter<MainActivity.Apps> {
                             } catch (InterruptedException e) {
                                 e.printStackTrace();
                             }
-                        }if(getItem(0) == currentApi) {
-                            currentApi.getClickButton(0);
+                        }if(getItem(3) == currentApi) {
+                            currentApi.getClickButton(3);
 
                         }
                         }

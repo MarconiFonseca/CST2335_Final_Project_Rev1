@@ -10,6 +10,7 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SearchView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -48,6 +49,8 @@ public class MainActivity extends AppCompatActivity {
         final ListView listView = findViewById(R.id.listview_main);
         listView.setAdapter(adapter);
         //Button button = findViewById(R.id.button01);
+
+        Toast.makeText(adapter.getContext(), "CST 2335", Toast.LENGTH_SHORT).show();
 
 
 
@@ -165,7 +168,7 @@ public class MainActivity extends AppCompatActivity {
         public int getClickButton(int i) {
 
             switch(i) {
-                case 0:
+                case 3:
 
                     Intent car = new Intent(MainActivity.this, com.example.cst2335_final_project.NewsAPI.MainActivity.class);
 
@@ -174,10 +177,7 @@ public class MainActivity extends AppCompatActivity {
 
                     break;
 
-                     case 1:
-                     Intent recipe = new Intent(MainActivity.this, com.example.cst2335_final_project.NewsAPI.MainActivity.class);
-                    startActivity(recipe);
-                         break;
+
         }
 
 
