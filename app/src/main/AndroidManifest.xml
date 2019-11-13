@@ -11,15 +11,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.example.cst2335_final_project.MainActivity">
+        <activity android:name=".Car_charging_station"></activity>
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.example.cst2335_final_project.NewsAPI.WebActivity"></activity>
-        <activity android:name="com.example.cst2335_final_project.NewsAPI.MainActivity"
+        <activity android:name=".NewsAPI.WebActivity" />
+        <activity
+            android:name=".NewsAPI.MainActivity"
             android:label="NewsAPI">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -29,4 +30,3 @@
     </application>
 
 </manifest>
-
