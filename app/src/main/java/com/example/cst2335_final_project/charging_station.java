@@ -25,7 +25,7 @@ public class charging_station extends AppCompatActivity {
         setContentView(R.layout.activity_charging_station);
 
 
-        //Customizing toolbar
+        //Customizing toolbar.
         toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("Electric Car Charging");
         toolbar.setSubtitle("Search by Coordinate");
