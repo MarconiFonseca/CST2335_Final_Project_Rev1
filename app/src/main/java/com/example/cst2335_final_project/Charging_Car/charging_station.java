@@ -34,10 +34,7 @@ public class charging_station extends AppCompatActivity {
     CharSequence query;
     SearchView latitude;
     SearchView longitude;
-    public static TextView data;
-
-
-    TextView tv ;
+   TextView tv ;
 
 
 
@@ -60,20 +57,21 @@ public class charging_station extends AppCompatActivity {
         String latitude_search = latitude.getQuery().toString();
         String longitude_search = longitude.getQuery().toString();
 
-      entertoSearch.setOnClickListener(new View.OnClickListener() {
-          @Override
-          public void onClick(View v) {
-              new JsonTask().execute("https://api.openchargemap.io/v3/poi/?output=json&countrycode=CA&latitude= "+ longitude_search +" &longitude=-78.3791239&maxresults=10&compact=true&verbose=false\"");
+        entertoSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                new JsonTask().execute("https://api.openchargemap.io/v3/poi/?output=json&countrycode=CA&latitude= "+ longitude_search +" &longitude=-78.3791239&maxresults=10&compact=true&verbose=false\"");
+                new JsonTask().execute("https://api.openchargemap.io/v3/poi/?output=json&countrycode=US&maxresults=10");
 
-          }
-      });
+            }
+        });
 
 
     }
 
 
 
- @Override
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
         MenuInflater inflater = getMenuInflater();
@@ -106,7 +104,7 @@ public class charging_station extends AppCompatActivity {
 
 
                 }
-        return buffer.toString();
+                return buffer.toString();
 
             } catch (MalformedURLException e) {
                 e.printStackTrace();
@@ -136,12 +134,12 @@ public class charging_station extends AppCompatActivity {
 
 
             tv = (TextView) findViewById(R.id.checking);
-        tv.setText(s.toString());
+            tv.setText(s);
             super.onPostExecute(s);
         }
 
     }
 
 
-    }
+}
 
