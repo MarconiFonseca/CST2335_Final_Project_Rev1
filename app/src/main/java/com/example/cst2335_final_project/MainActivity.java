@@ -15,6 +15,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.cst2335_final_project.Charging_Car.charging_station;
 import com.example.cst2335_final_project.NewsAPI.MainActivity_NewsAPI;
 
 import java.util.ArrayList;
@@ -170,14 +171,22 @@ public class MainActivity extends AppCompatActivity {
         public int getClickButton(int i) {
 
             switch(i) {
-                case 3:
+                case 1:
 
-                    Intent car = new Intent(MainActivity.this, MainActivity_NewsAPI.class);
+                    Intent car = new Intent(MainActivity.this, charging_station.class);
 
                     startActivityForResult(car,0);
 
 
+
                     break;
+
+                case 4:
+
+                    Intent news = new Intent(MainActivity.this, MainActivity_NewsAPI.class);
+
+                    startActivityForResult(news,0);
+
 
 
         }

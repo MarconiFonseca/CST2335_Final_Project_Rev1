@@ -143,12 +143,26 @@ public class LstViewAdapter extends ArrayAdapter<MainActivity.Apps> {
                             } catch (InterruptedException e) {
                                 e.printStackTrace();
                             }
-                        }if(getItem(3) == currentApi) {
-                            currentApi.getClickButton(3);
 
                         }
+                        if(getItem(position).getDeveName().equals("Lanre") ) {
+                            currentApi.getClickButton(1);}
+
+//                        if  (getItem(position).getDeveName().equals("Marconi") ) {
+//                            currentApi.getClickButton(4);
+//                        }
+
+
                         }
+
                 }).start();
+
+
+
+
+
+
+
 
 
 

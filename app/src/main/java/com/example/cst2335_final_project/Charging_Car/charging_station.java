@@ -69,9 +69,17 @@ public class charging_station extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
 
- @Override
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
         MenuInflater inflater = getMenuInflater();
