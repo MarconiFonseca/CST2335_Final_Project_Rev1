@@ -1,4 +1,4 @@
-package com.example.cst2335_final_project;
+package com.example.cst2335_final_project.Charging_Car;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -12,6 +12,8 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+
+import com.example.cst2335_final_project.R;
 
 import java.io.BufferedReader;
 import java.io.IOException;

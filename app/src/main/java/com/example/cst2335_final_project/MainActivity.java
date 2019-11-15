@@ -15,6 +15,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.cst2335_final_project.NewsAPI.MainActivity_NewsAPI;
+
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -170,7 +172,7 @@ public class MainActivity extends AppCompatActivity {
             switch(i) {
                 case 3:
 
-                    Intent car = new Intent(MainActivity.this, com.example.cst2335_final_project.NewsAPI.MainActivity.class);
+                    Intent car = new Intent(MainActivity.this, MainActivity_NewsAPI.class);
 
                     startActivityForResult(car,0);
 

@@ -32,11 +32,11 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MainActivity extends AppCompatActivity implements OnRecyclerViewItemClickListener {
+public class MainActivity_NewsAPI extends AppCompatActivity implements OnRecyclerViewItemClickListener {
 
     List<Article> articleList = new ArrayList<>();
 
-    MainArticleAdapter mainArticleAdapter;
+    Adapter_NewsAPI adapter;
     private RelativeLayout errorLayout;
     private SwipeRefreshLayout swipeRefreshLayout;
 
@@ -51,10 +51,10 @@ public class MainActivity extends AppCompatActivity implements OnRecyclerViewIte
         final RecyclerView recyclerView = findViewById(R.id.activity_main_rv);
         recyclerView.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
-        mainArticleAdapter = new MainArticleAdapter(articleList);
+        adapter = new Adapter_NewsAPI(articleList);
 
         recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(mainArticleAdapter);
+        recyclerView.setAdapter(adapter);
 
 
 
@@ -71,10 +71,10 @@ public class MainActivity extends AppCompatActivity implements OnRecyclerViewIte
                 if (response.body().getStatus().equals("ok")) {
                     List<Article> articleList = response.body().getArticles();
                     if (articleList.size() > 0) {
-                        final MainArticleAdapter mainArticleAdapter = new MainArticleAdapter(articleList);
+                        final Adapter_NewsAPI adapter = new Adapter_NewsAPI(articleList);
 
-                        mainArticleAdapter.setOnRecyclerViewItemClickListener(MainActivity.this);
-                        recyclerView.setAdapter(mainArticleAdapter);
+                        adapter.setOnRecyclerViewItemClickListener(MainActivity_NewsAPI.this);
+                        recyclerView.setAdapter(adapter);
                     }
                 }
             }
@@ -125,13 +125,15 @@ public class MainActivity extends AppCompatActivity implements OnRecyclerViewIte
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                mainArticleAdapter.getFilter().filter(newText);
+                adapter.getFilter().filter(newText);
                 return false;
             }
         });
         return true;
     }
 }
+
+
 
 
 
