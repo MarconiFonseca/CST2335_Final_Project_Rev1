@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cst2335_final_project.NewsAPI.News_API_Models.Article;
@@ -21,22 +22,22 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainArticleAdapter extends RecyclerView.Adapter<MainArticleAdapter.ViewHolder> implements Filterable {
+public class Adapter_NewsAPI extends RecyclerView.Adapter<Adapter_NewsAPI.ViewHolder> implements Filterable {
     private List<Article> articleArrayList;
     private List<Article> articleArrayListFull;
 
     private Context context;
     private OnRecyclerViewItemClickListener onRecyclerViewItemClickListener;
 
-    public MainArticleAdapter(List<Article> articleArrayList) {
+    public Adapter_NewsAPI(List<Article> articleArrayList) {
         this.articleArrayList = articleArrayList;
         articleArrayListFull = new ArrayList<>(articleArrayList);
     }
 
     @Override
-    public MainArticleAdapter.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+    public Adapter_NewsAPI.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.row_main_article_adapter, viewGroup, false);
-        return new MainArticleAdapter.ViewHolder(view);
+        return new Adapter_NewsAPI.ViewHolder(view);
     }
 
     @Override
@@ -59,7 +60,7 @@ public class MainArticleAdapter extends RecyclerView.Adapter<MainArticleAdapter.
             viewHolder.descriptionText.setText(articleModel.getDescription());
         }
 
-               viewHolder.artilceAdapterParentLinear.setTag(articleModel);
+        viewHolder.artilceAdapterParentLinear.setTag(articleModel);
     }
 
     @Override
