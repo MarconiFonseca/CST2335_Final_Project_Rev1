@@ -1,2 +1,2 @@
-include ':app', ':electric_charger'
+include ':app'
 rootProject.name='CST2335_Final_Project'
