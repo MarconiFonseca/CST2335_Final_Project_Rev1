@@ -54,17 +54,24 @@ public class charging_station extends AppCompatActivity {
         fav = new   ArrayList<String>();
         query = latitude.getQuery() ;
         entertoSearch = (Button) findViewById(R.id.enter);
-        String latitude_search = latitude.getQuery().toString();
-        String longitude_search = longitude.getQuery().toString();
+
+        CharSequence latitude_search = latitude.getQuery();
+        CharSequence longitude_search = longitude.getQuery();
 
         entertoSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                new JsonTask().execute("https://api.openchargemap.io/v3/poi/?output=json&countrycode=CA&latitude= "+ longitude_search +" &longitude=-78.3791239&maxresults=10&compact=true&verbose=false\"");
-                new JsonTask().execute("https://api.openchargemap.io/v3/poi/?output=json&countrycode=US&maxresults=10");
+                new JsonTask().execute("https://api.openchargemap.io/v3/poi/?output=json&countrycode=CA&latitude="+latitude_search+"&longitude="+longitude_search+"&maxresults=10&compact=true&verbose=false\"");
+
+
+//                new JsonTask().execute("https://api.openchargemap.io/v3/poi/?output=json&countrycode=US&latitude=38.846668&longitude=-91.948059&maxresults=10&compact=true&verbose=false\"");
+
+//                Toast.makeText(getApplicationContext(), "Latitude: " + latitude_search + " and Longitude " + longitude_search, Toast.LENGTH_SHORT).show();
 
             }
+
         });
+
 
 
     }
