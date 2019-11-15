@@ -171,10 +171,18 @@ public class MainActivity extends AppCompatActivity {
                 case 3:
 
                     Intent car = new Intent(MainActivity.this, com.example.cst2335_final_project.NewsAPI.MainActivity.class);
+
                     startActivityForResult(car,0);
+
+
                     break;
-            }
-           return clickB;
+
+
+        }
+
+
+                          return clickB;
+
 
         }
     }
