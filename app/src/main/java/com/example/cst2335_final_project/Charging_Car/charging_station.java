@@ -2,6 +2,7 @@ package com.example.cst2335_final_project.Charging_Car;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SearchView;
@@ -30,12 +31,13 @@ public class charging_station extends AppCompatActivity {
     Toolbar toolbar;
     ListView listView;
     Button entertoSearch;
-    ArrayList<Charging> charging_stations;
+    private  static Custom_List_Adapter adapter;
     ListView lv;
     CharSequence query;
     SearchView latitude;
     SearchView longitude;
     TextView tv;
+    ArrayList<Charging> charging_stations;
 
 
     @Override
@@ -50,35 +52,21 @@ public class charging_station extends AppCompatActivity {
 
         latitude = (SearchView) findViewById(R.id.latitude);
         longitude = (SearchView) findViewById(R.id.longitude);
-
-        lv = (ListView) findViewById(R.id.car_listview);
         charging_stations = new ArrayList<>();
+
+
         query = latitude.getQuery();
         entertoSearch = (Button) findViewById(R.id.enter);
 
         CharSequence latitude_search = latitude.getQuery();
         CharSequence longitude_search = longitude.getQuery();
 
-
-//        entertoSearch.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//        runOnUiThread(new Runnable() {
-//            @Override
-//            public void run() {
-////             AsyncTask<String, Integer, String> a = new ReadJSON().execute("https://api.openchargemap.io/v3/poi/?output=json&countrycode=CA&latitude= "+longitude_search+"&longitude=\"+latitude_search+\"&maxresults=10&compact=true&verbose=false\"");
-////            new ReadJSON().execute("https://api.openchargemap.io/v3/poi/?output=json&countrycode=CA&latitude="+longitude_search+"&longitude=\"+latitude_search+\"&maxresults=10&compact=true&verbose=false\"");
-//            new ReadJSON().execute("https://api.openchargemap.io/v3/poi/?output=json&countrycode=US&maxresults=10&compact=true&verbose=false");
-//    }});
-//   }});
-        runOnUiThread(new Runnable() {
+        entertoSearch.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void run() {
-//             AsyncTask<String, Integer, String> a = new ReadJSON().execute("https://api.openchargemap.io/v3/poi/?output=json&countrycode=CA&latitude= "+longitude_search+"&longitude=\"+latitude_search+\"&maxresults=10&compact=true&verbose=false\"");
-//            new ReadJSON().execute("https://api.openchargemap.io/v3/poi/?output=json&countrycode=CA&latitude="+longitude_search+"&longitude=\"+latitude_search+\"&maxresults=10&compact=true&verbose=false\"");
-                new ReadJSON().execute("https://api.openchargemap.io/v3/poi/?output=json&countrycode=US&maxresults=10&compact=true&verbose=false");
-            }});
+            public void onClick(View v) {
+                new ReadJSON().execute("https://api.openchargemap.io/v3/poi/?output=json&countrycode=US&maxresults=10");
+            }
+        });
 
     }
 
@@ -126,10 +114,9 @@ public class charging_station extends AppCompatActivity {
             }
         }
 
-
         return null;
     }
-    class ReadJSON extends AsyncTask<String, Integer, String> {
+    class ReadJSON extends AsyncTask<String, Double, String> {
 
         @Override
         protected String doInBackground(String... strings) {
@@ -140,24 +127,37 @@ public class charging_station extends AppCompatActivity {
         protected void onPostExecute(String s) {
 //            super.onPostExecute(s);
             try {
-                JSONObject jsonObject = new JSONObject(s);
-                JSONArray jArray = jsonObject.getJSONArray("AddressInfo");
-
+                JSONArray jArray = new JSONArray(s);
+              //  JSONArray jArray = jsonObject.getJSONArray("AddressInfo");
+                lv = (ListView) findViewById(R.id.car_listview);
                 for (int i = 0; i < jArray.length(); i++) {
-                        JSONObject carObject = jArray.getJSONObject(i);
-                        charging_stations.add(new Charging(
-                                carObject.getInt("ID"),
-                                carObject.getInt("Latitude"),
-                                carObject.getInt("Longitude"),
-                                carObject.getString("ContactTelephone1")
-                        ));
+
+                        JSONObject station = jArray.getJSONObject(i);
+                    JSONObject carObject = station.getJSONObject("AddressInfo");
+
+                    String tit =   carObject.getString("Title");
+                    Double longs =   carObject.getDouble("Latitude");
+                    Double lat =   carObject.getDouble("Longitude");
+                    String num;
+                    String numnull= " ";
+
+
+                    if(carObject.getString("ContactTelephone1") == numnull){
+                        num = "Phone not available";
+                    }else{
+                        num = carObject.getString("ContactTelephone1");
+                    }
+
+                    charging_stations.add(new Charging(tit, longs,lat,num));
+
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            Custom_List_Adapter adapter = new Custom_List_Adapter(
+             adapter = new Custom_List_Adapter(
                     getApplicationContext(), R.layout.custom_charge_items, charging_stations);
             lv.setAdapter(adapter);
+
         }
 
     }

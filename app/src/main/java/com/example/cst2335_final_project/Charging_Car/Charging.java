@@ -2,32 +2,34 @@ package com.example.cst2335_final_project.Charging_Car;
 
 public class Charging {
 
-    private int id;
-    private int latitude;
-    private int longitude;
+    public String title;
+    private Double latitude;
+    private Double longitude;
     private String phone_number;
 
-    public int getId() {
-        return id;
+
+
+    public String getTitle() {
+        return title;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public int getLatitude() {
+    public Double getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(int latitude) {
+    public void setLatitude(Double latitude) {
         this.latitude = latitude;
     }
 
-    public int getLongitude() {
+    public Double getLongitude() {
         return longitude;
     }
 
-    public void setLongitude(int longitude) {
+    public void setLongitude(Double longitude) {
         this.longitude = longitude;
     }
 
@@ -39,8 +41,8 @@ public class Charging {
         this.phone_number = phone_number;
     }
 
-    public Charging(int id, int latitude, int longitude, String phone_number) {
-        this.id = id;
+    public Charging(String title, Double latitude, Double longitude,String phone_number) {
+        this.title=title;
         this.latitude = latitude;
         this.longitude = longitude;
         this.phone_number = phone_number;

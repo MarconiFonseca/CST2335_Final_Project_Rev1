@@ -2,6 +2,7 @@ package com.example.cst2335_final_project.Charging_Car;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +20,7 @@ Context context;
 int resource;
 
     public Custom_List_Adapter(Context context, int resource, ArrayList <Charging> charging){
-        super(context,resource , charging);
+        super(context,resource, charging);
 
         this.charging = charging;
         this.context = context;
@@ -38,18 +39,22 @@ int resource;
 
         Charging info = getItem(position);
 
-        TextView station_id = (TextView)convertView.findViewById(R.id.station_id);
-        station_id.setText(info.getId());
+        TextView station_id = convertView.findViewById(R.id.station_tittle);
+        station_id.setText("Station Tittle : " + String.valueOf(info.getTitle()));
+        station_id.setTextColor(Color.RED);
+        TextView longitudes = convertView.findViewById(R.id.station_longitude);
+        longitudes.setText("Longitude :" + info.getLongitude().toString());
+        longitudes.setTextColor(Color.RED);
 
-        TextView longitudes = (TextView)convertView.findViewById(R.id.station_longitude);
-        longitudes.setText(info.getLongitude());
+        TextView latitudes = convertView.findViewById(R.id.station_latitude);
+        latitudes.setText("Latitude : " +info.getLatitude().toString());
+        latitudes.setTextColor(Color.RED);
 
-        TextView latitudes = (TextView)convertView.findViewById(R.id.station_latitude);
-        latitudes.setText(info.getLatitude());
+
 
         TextView station_number =  (TextView)convertView.findViewById(R.id.station_number);
-        station_number.setText(info.getPhone_number());
-
+        station_number.setText("Contact : " +info.getPhone_number());
+        station_number.setTextColor(Color.RED);
         return convertView;
     }
 
