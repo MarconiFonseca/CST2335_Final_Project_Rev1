@@ -15,12 +15,12 @@ import java.util.ArrayList;
 
 public class Custom_List_Adapter extends ArrayAdapter<Charging> {
 
-ArrayList <Charging> charging;
-Context context;
-int resource;
+    ArrayList<Charging> charging;
+    Context context;
+    int resource;
 
-    public Custom_List_Adapter(Context context, int resource, ArrayList <Charging> charging){
-        super(context,resource, charging);
+    public Custom_List_Adapter(Context context, int resource, ArrayList<Charging> charging) {
+        super(context, resource, charging);
 
         this.charging = charging;
         this.context = context;
@@ -29,10 +29,10 @@ int resource;
     }
 
     @Override
-    public View getView(int position, View convertView,  ViewGroup parent) {
+    public View getView(int position, View convertView, ViewGroup parent) {
 
-        if(convertView == null){
-            LayoutInflater layoutInflater = (LayoutInflater)getContext().getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
+        if (convertView == null) {
+            LayoutInflater layoutInflater = (LayoutInflater) getContext().getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
             convertView = layoutInflater.inflate(R.layout.custom_charge_items, null, true);
 
         }
@@ -42,21 +42,31 @@ int resource;
         TextView station_id = convertView.findViewById(R.id.station_tittle);
         station_id.setText("Station Tittle : " + String.valueOf(info.getTitle()));
         station_id.setTextColor(Color.RED);
+        station_id.setTextSize(16);
         TextView longitudes = convertView.findViewById(R.id.station_longitude);
         longitudes.setText("Longitude :" + info.getLongitude().toString());
         longitudes.setTextColor(Color.RED);
+        longitudes.setTextSize(14);
 
         TextView latitudes = convertView.findViewById(R.id.station_latitude);
-        latitudes.setText("Latitude : " +info.getLatitude().toString());
+        latitudes.setText("Latitude : " + info.getLatitude().toString());
         latitudes.setTextColor(Color.RED);
+        latitudes.setTextSize(14);
 
-
-
-        TextView station_number =  (TextView)convertView.findViewById(R.id.station_number);
-        station_number.setText("Contact : " +info.getPhone_number());
+        TextView station_number = (TextView) convertView.findViewById(R.id.station_number);
+        station_number.setText("Contact : " + info.getPhone_number());
         station_number.setTextColor(Color.RED);
+        station_number.setTextSize(14);
         return convertView;
     }
 
+    @Override
+    public void notifyDataSetChanged() {
+        super.notifyDataSetChanged();
+    }
 
+    @Override
+    public void clear() {
+        charging.clear();
+    }
 }

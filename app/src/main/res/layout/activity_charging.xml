@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".Charging_Car.charging_station"
-    android:orientation="vertical">
-
-
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <androidx.appcompat.widget.Toolbar
         android:layout_height="60dp"
@@ -17,18 +11,23 @@
         android:titleTextColor="#f5f6fa"
         android:subtitleTextColor="#f5f6fa"/>
 
-    <SearchView
-        android:id="@+id/latitude"
+    <EditText
+        android:id="@+id/lat"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:queryHint="Enter Latitude"
-        android:iconifiedByDefault="false"/>
-    <SearchView
-        android:id="@+id/longitude"
+        android:ems="10"
+        android:inputType="numberDecimal|numberSigned"
+        android:paddingLeft="10dp"
+
+        android:hint="Enter Latitude"/>
+    <EditText
+        android:id="@+id/longs"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:queryHint="Enter Latitude"
-        android:iconifiedByDefault="false"/>
+        android:ems="10"
+        android:inputType="numberDecimal|numberSigned"
+        android:paddingLeft="10dp"
+        android:hint="Enter Longitude"/>
 
     <GridLayout
         android:layout_width="match_parent"
@@ -54,22 +53,19 @@
             android:layout_column="2"
             android:text="Favourite" />
 
-
     </GridLayout>
 
     <ListView
         android:id="@+id/car_listview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:dividerHeight="5dp"
+        android:divider="#dcdde1"
         android:layout_row="1"
         android:layout_column="1" />
-
-<!--    <TextView-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        android:id="@+id/checking"/>-->
-
 
 
 
 </LinearLayout>
+
+
