@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
+
 import com.example.cst2335_final_project.R;
 
 import java.util.ArrayList;
@@ -25,13 +27,14 @@ public class Custom_List_Adapter extends ArrayAdapter<Charging> {
         this.charging = charging;
         this.context = context;
         this.resource = resource;
-
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
+
         if (convertView == null) {
+
             LayoutInflater layoutInflater = (LayoutInflater) getContext().getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
             convertView = layoutInflater.inflate(R.layout.custom_charge_items, null, true);
 
@@ -41,21 +44,21 @@ public class Custom_List_Adapter extends ArrayAdapter<Charging> {
 
         TextView station_id = convertView.findViewById(R.id.station_tittle);
         station_id.setText("Station Tittle : " + String.valueOf(info.getTitle()));
-        station_id.setTextColor(Color.RED);
+        station_id.setTextColor(Color.DKGRAY);
         station_id.setTextSize(16);
         TextView longitudes = convertView.findViewById(R.id.station_longitude);
-        longitudes.setText("Longitude :" + info.getLongitude().toString());
-        longitudes.setTextColor(Color.RED);
+        longitudes.setText("Longitude :" + " " + info.getLongitude().toString());
+        longitudes.setTextColor(Color.DKGRAY);
         longitudes.setTextSize(14);
 
         TextView latitudes = convertView.findViewById(R.id.station_latitude);
-        latitudes.setText("Latitude : " + info.getLatitude().toString());
-        latitudes.setTextColor(Color.RED);
+        latitudes.setText("Latitude : " + " " + info.getLatitude().toString());
+        latitudes.setTextColor(Color.DKGRAY);
         latitudes.setTextSize(14);
 
         TextView station_number = (TextView) convertView.findViewById(R.id.station_number);
         station_number.setText("Contact : " + info.getPhone_number());
-        station_number.setTextColor(Color.RED);
+        station_number.setTextColor(Color.DKGRAY);
         station_number.setTextSize(14);
         return convertView;
     }
@@ -65,8 +68,24 @@ public class Custom_List_Adapter extends ArrayAdapter<Charging> {
         super.notifyDataSetChanged();
     }
 
+//    @Override
+//    public void clear() {
+//        charging.clear();
+//    }
+
     @Override
-    public void clear() {
-        charging.clear();
+    public long getItemId(int position) {
+        return (long)position;
+    }
+
+    @Nullable
+    @Override
+    public Charging getItem(int position) {
+        return charging.get(position);
+    }
+
+    @Override
+    public int getCount() {
+        return charging.size();
     }
 }

@@ -15,6 +15,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.cst2335_final_project.Charging_Car.charging_station;
 import com.example.cst2335_final_project.NewsAPI.MainActivity_NewsAPI;
 
 import java.util.ArrayList;
@@ -53,11 +54,6 @@ public class MainActivity extends AppCompatActivity {
         //Button button = findViewById(R.id.button01);
 
         Toast.makeText(adapter.getContext(), "CST 2335", Toast.LENGTH_SHORT).show();
-
-
-
-
-
 
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
 
@@ -105,8 +101,6 @@ public class MainActivity extends AppCompatActivity {
         });
         return true;
     }
-
-
 
 
     @Override
@@ -170,19 +164,27 @@ public class MainActivity extends AppCompatActivity {
         public int getClickButton(int i) {
 
             switch(i) {
-                case 3:
 
-                    Intent car = new Intent(MainActivity.this, MainActivity_NewsAPI.class);
+                case 0:
+
+                    Intent car = new Intent(MainActivity.this, charging_station.class);
 
                     startActivityForResult(car,0);
 
 
                     break;
+                case 3:
+
+                    Intent cars = new Intent(MainActivity.this, MainActivity_NewsAPI.class);
+
+                    startActivityForResult(cars,0);
 
 
-        }
+                    break;
 
 
+
+            }
                           return clickB;
 
 

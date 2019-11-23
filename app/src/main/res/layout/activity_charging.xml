@@ -59,10 +59,12 @@
         android:id="@+id/car_listview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:dividerHeight="5dp"
+        android:dividerHeight="4dp"
         android:divider="#dcdde1"
         android:layout_row="1"
         android:layout_column="1" />
+
+
 
 
 
