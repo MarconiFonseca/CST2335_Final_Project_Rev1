@@ -1,14 +1,15 @@
 package com.example.cst2335_final_project.Charging_Car;
 
-import android.content.Intent;
-import android.net.Uri;
+import android.annotation.SuppressLint;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -23,6 +24,7 @@ import java.util.ArrayList;
 
 public class charging_station extends AppCompatActivity {
 
+    @SuppressLint("StaticFieldLeak")
     private static Custom_List_Adapter adapter;
     Toolbar toolbar;
     Button entertoSearch;
@@ -32,6 +34,7 @@ public class charging_station extends AppCompatActivity {
     ArrayList<Charging> charging_stations;
     String lat_text;
     String long_text;
+    DatabaseHelper dbhelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,17 +64,13 @@ public class charging_station extends AppCompatActivity {
         lv.setOnItemClickListener((parent, view, position, id) -> {
 //            Toast.makeText(charging_station.this, " Item numbers " + adapter.getCount(), Toast.LENGTH_SHORT).show();
 //                Toast.makeText(charging_station.this, "Clicked:::: " + position + " String Value ::::   "+charging_stations.get(position).getTitle(), Toast.LENGTH_SHORT).show();
-            String mapCoordinates= "geo:"+charging_stations.get(position).getLatitude().toString()+","+charging_stations.get(position).getLongitude().toString();
+            showDialog();
 
-            Uri gmmIntentUri = Uri.parse(mapCoordinates);
-            Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
-            mapIntent.setPackage("com.google.android.apps.maps");
-//            if (mapIntent.resolveActivity(getPackageManager()) != null) {
-//                startActivity(mapIntent);
-//            }
-            startActivity(mapIntent);
+
         });
     }
+
+
     class ReadJSON extends AsyncTask<String, Double, String> {
         @Override
         protected String doInBackground(String... strings) {
@@ -106,4 +105,35 @@ public class charging_station extends AppCompatActivity {
             lv.setAdapter(adapter);
         }
     }
+
+    public void showDialog()
+    {
+
+        View dialogtext = getLayoutInflater().inflate(R.layout.dialog, null);
+
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        Button loadInMap= (Button) findViewById(R.id.loadMap);
+        Button addToFav = (Button) findViewById(R.id.addtoFav) ;
+
+//        loadInMap.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                String mapCoordinates= "geo:"+charging_stations.get(position).getLatitude().toString()+","+charging_stations.get(position).getLongitude().toString();
+//
+//                Uri gmmIntentUri = Uri.parse(mapCoordinates);
+//                Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+//                mapIntent.setPackage("com.google.android.apps.maps");
+//                if (mapIntent.resolveActivity(getPackageManager()) != null) {
+//                    startActivity(mapIntent);
+//                }
+//                startActivity(mapIntent);
+//            }
+//        });
+        builder.setView(dialogtext);
+
+
+        builder.create().show();
+    }
+
 }
