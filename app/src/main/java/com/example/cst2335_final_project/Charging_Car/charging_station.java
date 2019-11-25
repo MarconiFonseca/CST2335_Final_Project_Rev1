@@ -1,6 +1,8 @@
 package com.example.cst2335_final_project.Charging_Car;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -35,6 +37,7 @@ public class charging_station extends AppCompatActivity {
     String lat_text;
     String long_text;
     DatabaseHelper dbhelper;
+    Button loadFav ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,8 +49,11 @@ public class charging_station extends AppCompatActivity {
         charging_stations = new ArrayList<>();
         lat = findViewById(R.id.lat);
         log = findViewById(R.id.longs);
+        loadFav = findViewById(R.id.fav);
         entertoSearch = findViewById(R.id.enter);
         lv = (ListView) findViewById(R.id.car_listview);
+
+        dbhelper=new DatabaseHelper(this);
 
         entertoSearch.setOnClickListener(v -> {
             lat_text = lat.getText().toString();
@@ -62,14 +68,39 @@ public class charging_station extends AppCompatActivity {
         });
 
         lv.setOnItemClickListener((parent, view, position, id) -> {
-//            Toast.makeText(charging_station.this, " Item numbers " + adapter.getCount(), Toast.LENGTH_SHORT).show();
-//                Toast.makeText(charging_station.this, "Clicked:::: " + position + " String Value ::::   "+charging_stations.get(position).getTitle(), Toast.LENGTH_SHORT).show();
-            showDialog();
 
+            String tittle = charging_stations.get(position).getTitle().toString();
+            String latitude = charging_stations.get(position).getLatitude().toString();
+            String longitide = charging_stations.get(position).getLongitude().toString();
+            String contact = charging_stations.get(position).getPhone_number().toString();
 
+            String mapCoordinates= "geo:"+latitude+","+longitide;
+            Uri gmmIntentUri = Uri.parse(mapCoordinates);
+            Intent mapIntent = new Intent(Intent.ACTION_VIEW);
+            mapIntent.setData(gmmIntentUri);
+            mapIntent.setPackage("com.google.android.apps.maps");
+            if (mapIntent.resolveActivity(getPackageManager()) != null) {
+                startActivity(mapIntent);
+            }
+          //  startActivity(mapIntent);
+
+        dbhelper.insertData(tittle,latitude,longitide,contact);
+
+//Toast.makeText(this, "Added to the database" + dbhelper.,Toast.LENGTH_LONG).show();
+        });
+
+        loadFav.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(charging_station.this, DisplayDB.class);
+
+                intent.putExtra("db", dbhelper.viewData());
+
+                startActivityForResult(intent, 0);
+            }
         });
     }
-
 
     class ReadJSON extends AsyncTask<String, Double, String> {
         @Override
@@ -116,23 +147,8 @@ public class charging_station extends AppCompatActivity {
         Button loadInMap= (Button) findViewById(R.id.loadMap);
         Button addToFav = (Button) findViewById(R.id.addtoFav) ;
 
-//        loadInMap.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                String mapCoordinates= "geo:"+charging_stations.get(position).getLatitude().toString()+","+charging_stations.get(position).getLongitude().toString();
-//
-//                Uri gmmIntentUri = Uri.parse(mapCoordinates);
-//                Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
-//                mapIntent.setPackage("com.google.android.apps.maps");
-//                if (mapIntent.resolveActivity(getPackageManager()) != null) {
-//                    startActivity(mapIntent);
-//                }
-//                startActivity(mapIntent);
-//            }
-//        });
+
         builder.setView(dialogtext);
-
-
         builder.create().show();
     }
 

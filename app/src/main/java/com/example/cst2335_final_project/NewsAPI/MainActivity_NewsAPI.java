@@ -57,7 +57,6 @@ public class MainActivity_NewsAPI extends AppCompatActivity implements OnRecycle
         recyclerView.setAdapter(adapter);
 
 
-
         Snackbar.make(recyclerView, "This is a SnackBar", Snackbar.LENGTH_LONG).show();
         final ApiInterfaces apiService = ApiClient.getClient().create(ApiInterfaces.class);
 

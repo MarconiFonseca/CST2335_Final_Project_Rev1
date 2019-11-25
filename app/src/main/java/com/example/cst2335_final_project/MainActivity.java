@@ -150,30 +150,25 @@ public class MainActivity extends AppCompatActivity {
         public String getDeveName() {
             return developerN;
         }
-
-
         public String getAppname() {
             return vName;
         }
-
-
         public int getImageResourceId() {
             return mImageResourceId;
         }
-
         public int getClickButton(int i) {
 
             switch(i) {
 
-                case 0:
+                case 3:
 
                     Intent car = new Intent(MainActivity.this, charging_station.class);
 
-                    startActivityForResult(car,0);
+                    startActivity(car);
 
 
                     break;
-                case 3:
+                case 1:
 
                     Intent cars = new Intent(MainActivity.this, MainActivity_NewsAPI.class);
 
