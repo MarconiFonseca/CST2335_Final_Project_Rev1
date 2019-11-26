@@ -11,7 +11,6 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -95,9 +94,9 @@ public class charging_station extends AppCompatActivity {
 
                 Intent intent = new Intent(charging_station.this, DisplayDB.class);
 
-                intent.putExtra("db", dbhelper.viewData());
 
-                startActivityForResult(intent, 0);
+
+                startActivity(intent);
             }
         });
     }
@@ -137,19 +136,6 @@ public class charging_station extends AppCompatActivity {
         }
     }
 
-    public void showDialog()
-    {
 
-        View dialogtext = getLayoutInflater().inflate(R.layout.dialog, null);
-
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        Button loadInMap= (Button) findViewById(R.id.loadMap);
-        Button addToFav = (Button) findViewById(R.id.addtoFav) ;
-
-
-        builder.setView(dialogtext);
-        builder.create().show();
-    }
 
 }

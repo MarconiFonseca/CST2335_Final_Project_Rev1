@@ -7,13 +7,23 @@
     tools:context=".Charging_Car.DisplayDB">
 
 
-    <TextView
-        android:id="@+id/textView2"
+<!--    <TextView-->
+<!--        android:layout_marginTop="20dp"-->
+<!--        android:layout_marginBottom="20dp"-->
+<!--        android:id="@+id/textView2"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:layout_weight="1"-->
+<!--        android:text="TextView"-->
+<!--        android:textSize="15dp"-->
+<!--        android:textColor="#353b48"-->
+<!--     />-->
+
+    <ListView
+        android:id="@+id/dblistView"
         android:layout_width="match_parent"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
         android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:text="TextView"
-        android:textSize="35dp"
-        android:textColor="#f5f6fa"
-        android:background="#273c75"/>
+        android:layout_weight="1" />
 </LinearLayout>

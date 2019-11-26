@@ -66,7 +66,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String values=" ";
 
        while (cursor.moveToNext()){
-             values = cursor.getString(0)+ " " +  cursor.getString(1)+ " " +  cursor.getString(2) + " " + cursor.getString(3);
+             values = cursor.getString(0)+ " " +  cursor.getString(1)+ "\n "+  cursor.getString(2) + "\n " + cursor.getString(3);
 
         }
 
