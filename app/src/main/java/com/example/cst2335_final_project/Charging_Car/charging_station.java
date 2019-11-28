@@ -2,10 +2,8 @@ package com.example.cst2335_final_project.Charging_Car;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -36,7 +34,7 @@ public class charging_station extends AppCompatActivity {
     String lat_text;
     String long_text;
     DatabaseHelper dbhelper;
-    Button loadFav ;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +46,7 @@ public class charging_station extends AppCompatActivity {
         charging_stations = new ArrayList<>();
         lat = findViewById(R.id.lat);
         log = findViewById(R.id.longs);
-        loadFav = findViewById(R.id.fav);
+
         entertoSearch = findViewById(R.id.enter);
         lv = (ListView) findViewById(R.id.car_listview);
 
@@ -68,37 +66,24 @@ public class charging_station extends AppCompatActivity {
 
         lv.setOnItemClickListener((parent, view, position, id) -> {
 
+
+
             String tittle = charging_stations.get(position).getTitle().toString();
             String latitude = charging_stations.get(position).getLatitude().toString();
-            String longitide = charging_stations.get(position).getLongitude().toString();
+            String longitude = charging_stations.get(position).getLongitude().toString();
             String contact = charging_stations.get(position).getPhone_number().toString();
 
-            String mapCoordinates= "geo:"+latitude+","+longitide;
-            Uri gmmIntentUri = Uri.parse(mapCoordinates);
-            Intent mapIntent = new Intent(Intent.ACTION_VIEW);
-            mapIntent.setData(gmmIntentUri);
-            mapIntent.setPackage("com.google.android.apps.maps");
-            if (mapIntent.resolveActivity(getPackageManager()) != null) {
-                startActivity(mapIntent);
-            }
-          //  startActivity(mapIntent);
+            Intent intent = new Intent(this, Preview.class);
 
-        dbhelper.insertData(tittle,latitude,longitide,contact);
+            intent.putExtra("tittle",tittle);
+            intent.putExtra("latitude",latitude);
+            intent.putExtra("longitude",longitude);
+            intent.putExtra("contact",contact);
 
-//Toast.makeText(this, "Added to the database" + dbhelper.,Toast.LENGTH_LONG).show();
+            startActivity(intent);
+
         });
 
-        loadFav.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent intent = new Intent(charging_station.this, DisplayDB.class);
-
-
-
-                startActivity(intent);
-            }
-        });
     }
 
     class ReadJSON extends AsyncTask<String, Double, String> {

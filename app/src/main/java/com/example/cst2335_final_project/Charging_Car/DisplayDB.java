@@ -15,33 +15,33 @@ import java.util.ArrayList;
 public class DisplayDB extends AppCompatActivity {
 
 
-    TextView textView;
-DatabaseHelper dbhelper;
 
-ArrayList<String> arrys;
-ListView dblist;
-ArrayAdapter <String>adapter;
+    TextView textView;
+    DatabaseHelper dbhelper;
+    ArrayList<String> arrys;
+    ListView dblist;
+    ArrayAdapter <String>adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_db);
-//        textView = findViewById(R.id.textView2);
+        textView = findViewById(R.id.dbItems);
         dbhelper= new DatabaseHelper(this);
         arrys= new ArrayList<String>();
 
-        dblist =  findViewById(R.id.dblistView);
+//        dblist =  findViewById(R.id.dblistView);
         Intent incomingIntent = new Intent();
 
 
         String viewData = dbhelper.viewData();
 
-
-
         arrys.add(viewData);
 
-        adapter = new ArrayAdapter(getApplicationContext(), R.layout.displaydbitems,arrys );
+//        adapter = new ArrayAdapter(getApplicationContext(), R.layout.displaydbitems,arrys );
+        textView.setText(arrys.toString());
 
-        dblist.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
+//        dblist.setAdapter(adapter);
+//        adapter.notifyDataSetChanged();
     }
 }
