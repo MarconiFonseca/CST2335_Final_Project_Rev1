@@ -2,7 +2,7 @@ package com.example.cst2335_final_project.Charging_Car;
 
 public class Charging {
 
-    public String title;
+    private String title;
     private Double latitude;
     private Double longitude;
     private String phone_number;

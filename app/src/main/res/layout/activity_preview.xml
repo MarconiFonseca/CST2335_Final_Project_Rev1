@@ -49,10 +49,12 @@
     </LinearLayout>
 
 
-    <TextView
+    <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-
-        android:id="@+id/showDbList"/>
+        android:dividerHeight="4dp"
+        android:divider="#dcdde1"
+        android:layout_marginLeft="10dp"
+         android:id="@+id/showDbList"/>
 
 </LinearLayout>

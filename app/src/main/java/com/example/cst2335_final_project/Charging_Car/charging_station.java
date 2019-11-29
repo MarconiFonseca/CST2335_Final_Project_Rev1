@@ -1,9 +1,12 @@
 package com.example.cst2335_final_project.Charging_Car;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -34,6 +37,9 @@ public class charging_station extends AppCompatActivity {
     String lat_text;
     String long_text;
     DatabaseHelper dbhelper;
+    SharedPreferences sharedPrefernce;
+    Button loadfav;
+
 
 
     @Override
@@ -46,6 +52,10 @@ public class charging_station extends AppCompatActivity {
         charging_stations = new ArrayList<>();
         lat = findViewById(R.id.lat);
         log = findViewById(R.id.longs);
+        sharedPrefernce = getSharedPreferences("List Items", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPrefernce.edit();
+        loadfav= findViewById(R.id.viewFav);
+
 
         entertoSearch = findViewById(R.id.enter);
         lv = (ListView) findViewById(R.id.car_listview);
@@ -53,6 +63,7 @@ public class charging_station extends AppCompatActivity {
         dbhelper=new DatabaseHelper(this);
 
         entertoSearch.setOnClickListener(v -> {
+
             lat_text = lat.getText().toString();
             long_text = log.getText().toString();
             if (lat_text.matches("") || long_text.matches("")) {
@@ -60,13 +71,14 @@ public class charging_station extends AppCompatActivity {
                 return;
             }
             new ReadJSON().execute("https://api.openchargemap.io/v3/poi/?output=json&countrycode=CA&latitude=" + lat_text + "&longitude=" + long_text + "&maxresults=10");
-            lat_text.isEmpty();
-            long_text.isEmpty();
+
+
+            lat_text = "";
+            long_text=" ";
+
         });
 
         lv.setOnItemClickListener((parent, view, position, id) -> {
-
-
 
             String tittle = charging_stations.get(position).getTitle().toString();
             String latitude = charging_stations.get(position).getLatitude().toString();
@@ -84,6 +96,20 @@ public class charging_station extends AppCompatActivity {
 
         });
 
+
+        loadfav.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToFav();
+
+            }
+        });
+    }
+
+    public void goToFav(){
+        Intent i = new Intent(this, Preview.class);
+
+        startActivity(i);
     }
 
     class ReadJSON extends AsyncTask<String, Double, String> {
@@ -94,6 +120,8 @@ public class charging_station extends AppCompatActivity {
         @Override
         protected void onPostExecute(String s) {
 //            super.onPostExecute(s);
+            adapter = new Custom_List_Adapter(getApplicationContext(), R.layout.custom_charge_items, charging_stations);
+                adapter.clear();
             try {
                 JSONArray jArray = new JSONArray(s);
 
@@ -106,7 +134,7 @@ public class charging_station extends AppCompatActivity {
                     String num;
                     String numnull = " ";
 
-                    if (carObject.getString("ContactTelephone1") == numnull) {
+                    if (carObject.getString("ContactTelephone1") == numnull) { charging_stations.clear();
                         num = "Phone not available";
                     } else {
                         num = carObject.getString("ContactTelephone1");
@@ -116,7 +144,7 @@ public class charging_station extends AppCompatActivity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            adapter = new Custom_List_Adapter(getApplicationContext(), R.layout.custom_charge_items, charging_stations);
+
             lv.setAdapter(adapter);
         }
     }

@@ -9,7 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import java.util.ArrayList;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
-    ArrayList databaseInfo;
+//    ArrayList databaseInfo;
     private static final String DB_NAME = "ChargingStation.Db";
     private static final String DB_TABLE = "Charging_Station";
     //columns
@@ -43,6 +43,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onDowngrada() {
     }
 
+    public void deleteAll(){
+        SQLiteDatabase db =this.getWritableDatabase();
+        db.execSQL("delete from "+ DB_TABLE);
+
+    }
     public boolean insertData(String tittle, String Latitude, String Longitude, String Contact) {
 
         SQLiteDatabase db = this.getWritableDatabase();
@@ -58,7 +63,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     //view data
-    public String viewData() {
+    public ArrayList<Charging> viewData() {
+        ArrayList<Charging> chargeArray = new ArrayList<Charging>();
         SQLiteDatabase db = this.getReadableDatabase();
         String query = "Select * from " + DB_TABLE ;
         Cursor cursor = db.rawQuery(query, null);
@@ -66,12 +72,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String values=" ";
 
        while (cursor.moveToNext()){
-             values = cursor.getString(0)+ " " +  cursor.getString(1)+ "\n "+  cursor.getString(2) + "\n " + cursor.getString(3);
+//             values = "Tittle :" + cursor.getString(1)+ "\n "+  "Latitude :" + cursor.getString(2) + "\n " +"Longitude :" + cursor.getString(3);
+
+//           int id = cursor.getInt(0);
+           String tittle = cursor.getString(1);
+           double lat = cursor.getDouble(2);
+           double longg = cursor.getDouble(3);
+           String phone = cursor.getString(4);
+
+           chargeArray.add(new Charging(tittle,lat,longg,phone));
 
         }
-
-        return  values;
+        return chargeArray;
         }
+
+
 
     }
 
