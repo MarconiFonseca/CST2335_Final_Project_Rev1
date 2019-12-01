@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.widget.Button;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,20 +15,12 @@ import java.util.ArrayList;
 
 public class Preview extends AppCompatActivity {
 
-    private static Custom_List_Adapter adapter;
-    DatabaseHelper dbhelper;
     TextView preview;
-    Button loadInMap ;
-    Button addToFav ;
-    TextView showDb;
-    Button loadDb;
-    ListView lv;
-    ArrayList<Charging> arrys;
-    String tittle;
-    String Latitude;
-    String Longitude;
-    String Contact;
+    Button loadInMap,addToFav;
+    DatabaseHelper dbhelper;
+    ArrayList<Charging> addToFavs;
 
+    String tittle, Latitude,Longitude,Contact;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,14 +29,7 @@ public class Preview extends AppCompatActivity {
         loadInMap = findViewById(R.id.loadInMap);
         addToFav = findViewById(R.id.addtoFav);
         dbhelper= new DatabaseHelper(this);
-//        showDb = findViewById(R.id.showDbList);
-        loadDb= findViewById(R.id.ViewData);
-        lv=findViewById(R.id.showDbList);
-        arrys = new ArrayList<>();
-
-        arrys=dbhelper.viewData();
-
-
+        addToFavs= new ArrayList<>();
 
         if (savedInstanceState == null) {
             Bundle extras = getIntent().getExtras();
@@ -67,39 +51,24 @@ public class Preview extends AppCompatActivity {
             Contact= (String) savedInstanceState.getSerializable("contact");
         }
 
-      String contactInfo= "Tittle: "+ tittle + "\n"+ "Latitude: "+ Latitude + "\n" +"Longitude: " +Longitude + "\n" +"Contact: " + Contact;
-
-            preview.setText(contactInfo);
-
+        String contactInfo= "Tittle: "+ tittle + "\n"+ "Latitude: "+ Latitude + "\n" +"Longitude: " +Longitude + "\n" +"Contact: " + Contact;
+        preview.setText(contactInfo);
         loadInMap.setOnClickListener(v -> {
-                 loadMap();
+            loadMap();
         });
-
         addToFav.setOnClickListener(v -> {
-
-                if(tittle==null && Latitude==null && Longitude==null && Contact==null){
-                    Toast.makeText(this, "Empty Values unacceptable", Toast.LENGTH_SHORT).show();
-
-                }else{
-                    dbhelper.insertData(tittle, Latitude, Longitude, Contact);
-                    Toast.makeText(this, "Successfully added to the Database", Toast.LENGTH_SHORT).show();
-                }
-
-        });
-
-        loadDb.setOnClickListener(v -> {
-            adapter = new Custom_List_Adapter(getApplicationContext(), R.layout.activity_display_db, arrys);
-
-            lv.setAdapter(adapter);
-
-
-
-            //This is to test mt database perfoemance
 //            dbhelper.deleteAll();
+            if(tittle==null && Latitude==null && Longitude==null && Contact==null){
+                Toast.makeText(this, "Empty Values unacceptable", Toast.LENGTH_SHORT).show();
+            }else{
+                dbhelper.insertData(tittle, Latitude, Longitude, Contact);
+                addToFavs.add(new Charging(tittle, Double.parseDouble(Latitude),Double.parseDouble(Longitude), Contact));
 
-
+                Toast.makeText(this, "Successfully added to the Database", Toast.LENGTH_SHORT).show();
+            }
         });
     }
+
     public void loadMap(){
         String mapCoordinates= "geo:"+Latitude+","+Longitude;
         Uri gmmIntentUri = Uri.parse(mapCoordinates);
@@ -110,6 +79,4 @@ public class Preview extends AppCompatActivity {
             startActivity(mapIntent);
         }
     }
-
-
 }

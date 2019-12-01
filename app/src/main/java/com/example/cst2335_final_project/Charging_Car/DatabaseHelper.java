@@ -22,8 +22,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
     //queries
-    private static final String CREATE_TABLE = "CREATE TABLE " + DB_TABLE + "(" + CHARGE_ID + " INTEGER PRIMARY KEY ," + COL_TITTLE + " TEXT," + COL_LAT + " TEXT," + COL_LONG + " TEXT," + COL_CONTACT + " ,TEXT);";
-
+    private static final String CREATE_TABLE = "CREATE TABLE " + DB_TABLE + "(" + CHARGE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT ," + COL_TITTLE + " TEXT," + COL_LAT + " TEXT," + COL_LONG + " TEXT," + COL_CONTACT + " ,TEXT);";
+    SQLiteDatabase db =this.getWritableDatabase();
     public DatabaseHelper(Context context) {
         super(context, DB_NAME, null, DATABASE_VERSION);
 
@@ -42,15 +42,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public void onDowngrada() {
     }
+    public void deleteItem(long id){
+        String ids = String.valueOf(id);
 
-    public void deleteAll(){
-        SQLiteDatabase db =this.getWritableDatabase();
-        db.execSQL("delete from "+ DB_TABLE);
+//        "DELETE from mylist_data  WHERE billID= '" +getID+ "'"
+        db.execSQL("DELETE FROM " + DB_TABLE + "WHERE " +CHARGE_ID+"='" +ids+ "'");
+    }
 
+    public void deleteAll( ){
+
+        db.execSQL("DELETE FROM " + DB_TABLE );
     }
     public boolean insertData(String tittle, String Latitude, String Longitude, String Contact) {
 
-        SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("Tittle", tittle);
         contentValues.put("Latitude", Latitude);
@@ -58,14 +62,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put("Contact", Contact);
 
         long result = db.insert(DB_TABLE, null, contentValues);
-
+        db.close();
         return result != -1; //if result = -1 data doesn't insert
+
     }
 
     //view data
     public ArrayList<Charging> viewData() {
         ArrayList<Charging> chargeArray = new ArrayList<Charging>();
-        SQLiteDatabase db = this.getReadableDatabase();
+
         String query = "Select * from " + DB_TABLE ;
         Cursor cursor = db.rawQuery(query, null);
 
@@ -79,14 +84,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
            double lat = cursor.getDouble(2);
            double longg = cursor.getDouble(3);
            String phone = cursor.getString(4);
-
            chargeArray.add(new Charging(tittle,lat,longg,phone));
 
         }
         return chargeArray;
         }
-
-
-
     }
 

@@ -9,8 +9,6 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import androidx.annotation.Nullable;
-
 import com.example.cst2335_final_project.R;
 
 import java.util.ArrayList;
@@ -31,8 +29,6 @@ public class Custom_List_Adapter extends ArrayAdapter<Charging> {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-
-
         if (convertView == null) {
 
             LayoutInflater layoutInflater = (LayoutInflater) getContext().getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
@@ -73,13 +69,12 @@ public class Custom_List_Adapter extends ArrayAdapter<Charging> {
 //        charging.clear();
 //    }
 
-    @Override
-    public long getItemId(int position) {
-        return (long)position;
+    public long getItemId(long position) {
+        return position;
     }
 
-    @Nullable
-    @Override
+
+
     public Charging getItem(int position) {
         return charging.get(position);
     }

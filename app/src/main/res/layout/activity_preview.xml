@@ -27,34 +27,19 @@
         <Button
             android:id="@+id/loadInMap"
             android:layout_width="wrap_content"
+            android:layout_marginLeft="35dp"
             android:layout_height="wrap_content"
-
             android:text="Load In Map" />
 
         <Button
             android:id="@+id/addtoFav"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
+            android:layout_marginLeft="90dp"
             android:text="Add to Favourite" />
-
-        <Button
-            android:id="@+id/ViewData"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-
-            android:text="View Favourite" />
 
 
     </LinearLayout>
-
-
-    <ListView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:dividerHeight="4dp"
-        android:divider="#dcdde1"
-        android:layout_marginLeft="10dp"
-         android:id="@+id/showDbList"/>
+ 
 
 </LinearLayout>

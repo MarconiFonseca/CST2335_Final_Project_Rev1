@@ -3,20 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    tools:context=".Charging_Car.viewData">
 
-
-    <TextView
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="20dp"
-        android:id="@+id/dbItems"
+    <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:text="TextView"
-        android:layout_marginLeft="20dp"
-        android:textSize="25dp"
-        android:textColor="#353b48"
-     />
+        android:dividerHeight="4dp"
+        android:divider="#dcdde1"
+        android:layout_marginLeft="10dp"
+        android:id="@+id/showDbList"/>
 
 </LinearLayout>

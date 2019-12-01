@@ -8,7 +8,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class urlReader {
-    public static String readURL(String theURL) {
+    static String readURL(String theURL) {
         StringBuilder content = new StringBuilder();
         HttpURLConnection connection = null;
         BufferedReader bufferedReader = null;
