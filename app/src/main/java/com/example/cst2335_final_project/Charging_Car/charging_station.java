@@ -29,7 +29,10 @@ public class charging_station extends AppCompatActivity {
     ArrayList<Charging> charging_stations;
     String lat_text,long_text;
 
-
+    /**
+     * 
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
