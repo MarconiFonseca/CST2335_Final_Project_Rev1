@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/car_station"
+        android:icon="@drawable/ic_directions_car_black_24dp"
+        android:title="@string/car_charging"
+        app:showAsAction="collapseActionView" />
+
+    <item
+        android:id="@+id/recipes"
+        android:icon="@drawable/recepi"
+        android:title="@string/Recipe"
+        app:showAsAction="collapseActionView" />
+
+    <item
+        android:id="@+id/currency"
+        android:icon="@drawable/atm_black_24dp"
+        android:title="@string/Currency"
+        app:showAsAction="collapseActionView" />
+    <item
+        android:id="@+id/news_api"
+        android:icon="@drawable/news"
+        android:title="@string/News_Api"
+        app:showAsAction="collapseActionView" />
+
+
+</menu>

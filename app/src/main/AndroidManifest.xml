@@ -25,9 +25,10 @@
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
+        <activity android:name="com.example.cst2335_final_project.NewsAPI.News_Favorite"></activity>
         <activity android:name=".NewsAPI.WebActivity" />
         <activity
-            android:name=".NewsAPI.MainActivity_NewsAPI"
+            android:name=".NewsAPI.MainActivity"
             android:label="NewsAPI">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />

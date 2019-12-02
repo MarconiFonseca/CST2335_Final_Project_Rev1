@@ -8,6 +8,8 @@ import com.google.gson.annotations.SerializedName;
 
 public class Article {
 
+
+
     @SerializedName("source")
     private SourceModel source;
     @SerializedName("author")
@@ -22,6 +24,23 @@ public class Article {
     private String urlToImage;
     @SerializedName("publishedAt")
     private String publishedAt;
+
+    private long id;
+
+
+    public Article(long id, String title, String url, String urlToImage, String description) {
+        this.id = id;
+        this.title=title;
+        this.url=url;
+        this.urlToImage=urlToImage;
+        this.description=description;
+
+    }
+
+    public Article() {
+
+    }
+
     public SourceModel getSource() {
         return source;
     }
@@ -54,6 +73,7 @@ public class Article {
     }
     public String getUrlToImage() { return urlToImage;
     }
+    public long getId() {return this.id;} /** @return id*/
     public void setUrlToImage(String urlToImage) {
         this.urlToImage = urlToImage;
     }
@@ -63,4 +83,6 @@ public class Article {
     public void setPublishedAt(String publishedAt) {
         this.publishedAt = publishedAt;
     }
+
+
 }

@@ -37,10 +37,10 @@
             android:textSize="14sp" />
 
         <ImageButton
-            android:id="@+id/star"
+            android:id="@+id/delete"
             android:layout_width="22dp"
             android:layout_height="22dp"
-            android:background="@drawable/img_star_grey"
+            android:background="@android:drawable/ic_delete"
             android:textOff=""
             android:textOn="" />
 

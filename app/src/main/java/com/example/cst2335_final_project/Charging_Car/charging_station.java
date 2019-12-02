@@ -34,9 +34,9 @@ public class charging_station extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_charging);
-        toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle("Electric Car Charging");
-        setSupportActionBar(toolbar);
+        //toolbar = findViewById(R.id.toolbar);
+        //toolbar.setTitle("Electric Car Charging");
+        //setSupportActionBar(toolbar);
         charging_stations = new ArrayList<>();
         lat = findViewById(R.id.lat);
         log = findViewById(R.id.longs);

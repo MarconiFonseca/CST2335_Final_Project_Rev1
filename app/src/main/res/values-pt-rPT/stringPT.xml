@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Projeto Final </string>
+    <string name="car_charging">Carregador de Carro</string>
+    <string name="top_headlines">Ultimas Noticias</string>
+    <string name="electric">Eletrico</string>
+    <string name="Click_to_enter">Clique para Entrar</string>
+    <string name="Developed_by">Desenvolvido por</string>
+    <string name="title">Titulo</string>
+    <string name="Search">Procura</string>
+    <string name="Author_Name">Autor nome</string>
+    <string name="Activity_version">Versao</string>
+    <string name="How_to_use">Como usar</string>
+    <string name="Recipe">Receita</string>
+    <string name="Currency">Currency</string>
+    <string name="News_Api">News API</string>
+    <string name="dialog">Bem vindo a este App</string>
+    <string name="message">Espero que voce se divirta-se!</string>
+</resources>

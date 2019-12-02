@@ -11,17 +11,22 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.Toast;
-
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.cst2335_final_project.Charging_Car.charging_station;
-import com.example.cst2335_final_project.NewsAPI.MainActivity_NewsAPI;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
 
+public class MainActivity extends AppCompatActivity  {
+    /**
+     * Declaring variables
+     */
+    private ActionBar toolbar;
     private LstViewAdapter adapter;
     ArrayList<Apps> apps = new ArrayList<>();
 
@@ -31,23 +36,22 @@ public class MainActivity extends AppCompatActivity {
     private static final String ACTIVITY_NAME = "main";
     AdapterView listView;
 
-    //On Create Class
+    /**
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
-        // Create an ArrayList of APIs
-
-
+        toolbar = getSupportActionBar();
         apps.add(new Apps("  Electric Car Charging Station finder", "Lanre", R.drawable.car, 1));
         apps.add(new Apps("  Recipe search engine", "Linh", R.drawable.recipe, 2));
         apps.add(new Apps("  Foreign currency conversion api", "Amir", R.drawable.foreign, 3));
         apps.add(new Apps("  News Api.org headlines api", "Marconi", R.drawable.newapp, 4));
 
         // Initiate a new Adapter
-         adapter = new LstViewAdapter(this, apps);
+        adapter = new LstViewAdapter(this, apps);
         //Declaring the listView obj
         final ListView listView = findViewById(R.id.listview_main);
         listView.setAdapter(adapter);
@@ -55,12 +59,50 @@ public class MainActivity extends AppCompatActivity {
 
         Toast.makeText(adapter.getContext(), "CST 2335", Toast.LENGTH_SHORT).show();
 
+        final BottomNavigationView bottomNavigationView = findViewById(R.id.navegation);
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            /**
+             *
+             * @param item
+             * @return
+             */
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                switch (item.getItemId()) {
+                    case R.id.car_station:
+                        Intent car = new Intent(MainActivity.this, charging_station.class);
+
+                        startActivity(car);
+                        break;
+                    case R.id.recipes:
+                        Toast.makeText(MainActivity.this, "Recipes", Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.currency:
+                        Toast.makeText(MainActivity.this, "currency", Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.news_api:
+
+
+                        Intent nextActivity = new Intent(MainActivity.this, com.example.cst2335_final_project.NewsAPI.MainActivity.class);
+                        startActivity(nextActivity); //make the transition
+                        break;
+
+                }
+                return true;
+            }
+
+
+
+        });
+
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
 
         builder.setCancelable(true);
 
-        builder.setTitle("Welcome to an Amazing App");
-        builder.setMessage("I hope you  enjoy this App. Have fun!");
+        builder.setTitle(getString(R.string.dialog));
+        builder.setMessage(getString(R.string.message));
 
         // Setting Negative "Cancel" Button
         builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -76,9 +118,15 @@ public class MainActivity extends AppCompatActivity {
         });
         builder.show();
 
-       // listView.removeFooterView(progressBar);
+        // listView.removeFooterView(progressBar);
     }
 
+
+    /**
+     *
+     * @param menu
+     * @return
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -103,12 +151,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    /**
+     *
+     */
     @Override
     protected void onResume() {
         super.onResume();
         onRestart();
     }
 
+    /**
+     * On Post Resume Method
+     */
     @Override
     protected void onPostResume() {
         super.onPostResume();
@@ -116,6 +170,11 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
+
+
+    }
 
 
     /**
@@ -150,17 +209,30 @@ public class MainActivity extends AppCompatActivity {
         public String getDeveName() {
             return developerN;
         }
+
+
         public String getAppname() {
             return vName;
         }
+
+
         public int getImageResourceId() {
             return mImageResourceId;
         }
+
         public int getClickButton(int i) {
 
             switch(i) {
-
                 case 3:
+
+                    Intent news = new Intent(MainActivity.this, com.example.cst2335_final_project.NewsAPI.MainActivity.class);
+
+                    startActivity(news);
+
+
+                    break;
+
+                case 0:
 
                     Intent car = new Intent(MainActivity.this, charging_station.class);
 
@@ -168,19 +240,12 @@ public class MainActivity extends AppCompatActivity {
 
 
                     break;
-                case 1:
-
-                    Intent cars = new Intent(MainActivity.this, MainActivity_NewsAPI.class);
-
-                    startActivityForResult(cars,0);
-
-
-                    break;
-
 
 
             }
-                          return clickB;
+
+
+            return clickB;
 
 
         }

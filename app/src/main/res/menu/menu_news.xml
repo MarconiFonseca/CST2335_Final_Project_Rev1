@@ -6,12 +6,26 @@
         android:id="@+id/action_search"
         android:icon="@drawable/ic_search"
         android:orderInCategory="100"
-        android:title="Search"
+        android:title="@string/Search"
         app:showAsAction="ifRoom|collapseActionView"
         app:actionViewClass="android.widget.SearchView"
         android:theme="@android:style/Theme.Holo.Light.DarkActionBar"/>
 
 
+
+
+    <item  android:id="@+id/item1"
+        android:title="@string/Author_Name"
+        app:showAsAction="never"
+        android:icon="@android:drawable/btn_star"/>
+    <item  android:id="@+id/item2"
+        android:title="@string/Activity_version"
+        app:showAsAction="never"
+        android:icon="@android:drawable/btn_plus"/>
+    <item  android:id="@+id/item3"
+        android:title="@string/How_to_use"
+        app:showAsAction="withText"
+        android:icon="@android:drawable/btn_plus"/>
 
 
 

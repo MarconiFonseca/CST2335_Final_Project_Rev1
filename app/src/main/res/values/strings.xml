@@ -2,6 +2,19 @@
     <string name="app_name">CST2335_Final_Project</string>
     <string name="car_charging">Car Charging</string>
     <string name="top_headlines">Top HeadLines</string>
+    <string name="electric">Electric</string>
+    <string name="Click_to_enter">Click to enter</string>
+    <string name="Developed_by">Developed by</string>
+    <string name="title">title</string>
+    <string name="Search">search</string>
+    <string name="Author_Name">Author\'s Name</string>
+    <string name="Activity_version">Activity version</string>
+    <string name="How_to_use">How to use</string>
+    <string name="Recipe">Recipe</string>
+    <string name="Currency">collapseActionView</string>
+    <string name="News_Api">News API</string>
+    <string name="dialog">Welcome to an Amazing App</string>
+    <string name="message">I hope you  enjoy this App. Have fun!</string>
 
 
 </resources>
