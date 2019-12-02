@@ -14,39 +14,21 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
-
-
 import java.util.ArrayList;
 import java.util.List;
-
-/**
- * LstViewAdapter Class
- */
 
 
 public class LstViewAdapter extends ArrayAdapter<MainActivity.Apps> {
 
-
-    // private static Object Context;
+   // private static Object Context;
     private List<MainActivity.Apps> appsList;
     private List<MainActivity.Apps> apps;
 
 
-    /**
-     *
-     * @param context
-     * @param resource
-     * @param apps
-     */
+   
     public LstViewAdapter(@NonNull Context context, int resource, List<MainActivity.Apps> apps) {
         super(context, resource);
     }
-
-    /**
-     *
-     * @param context
-     * @param apps
-     */
 
     public LstViewAdapter(MainActivity context, ArrayList<MainActivity.Apps> apps) {
         super(context, 0, apps);
@@ -54,27 +36,12 @@ public class LstViewAdapter extends ArrayAdapter<MainActivity.Apps> {
         appsList= new ArrayList<>(apps);
     }
 
-    /**
-     *
-     * @param context
-     * @param resource
-     */
-    public LstViewAdapter(@NonNull Context context, int resource) {
-        super(context, resource);
-    }
-
-
-
-
-
-
-
     /*
      *  LstViewADapter that can provide the layout for each list.
      *
      * */
 
-    //  private static final String LOG_TAG = LstViewAdapter.class.getSimpleName();
+  //  private static final String LOG_TAG = LstViewAdapter.class.getSimpleName();
 
     /**
      * @param context    The current context. Used to inflate the layout file.
@@ -106,13 +73,13 @@ public class LstViewAdapter extends ArrayAdapter<MainActivity.Apps> {
      */
 
     @Override
-    public View getView(final int position, View convertView, final ViewGroup parent) {
+    public View getView( int position,  View convertView, final ViewGroup parent) {
 
-        View listItemView;
+         View listItemView;
 
-        listItemView = LayoutInflater.from(getContext()).inflate(
-                R.layout.list_item, parent, false
-        );
+            listItemView = LayoutInflater.from(getContext()).inflate(
+                    R.layout.list_item, parent, false
+            );
 
         final MainActivity.Apps currentApi = getItem(position);
 
@@ -124,7 +91,7 @@ public class LstViewAdapter extends ArrayAdapter<MainActivity.Apps> {
 
         nameTextView.setText(currentApi.getAppname());
 
-        TextView developersView = (TextView) listItemView.findViewById(R.id.developer);
+       TextView developersView = (TextView) listItemView.findViewById(R.id.developer);
 
         developersView.setText(String.valueOf(currentApi.getDeveName()));
 
@@ -133,11 +100,11 @@ public class LstViewAdapter extends ArrayAdapter<MainActivity.Apps> {
 
         iconView.setImageResource(currentApi.getImageResourceId());
         //final ProgressBar simpleProgressBar =  listItemView.findViewById(R.id.simpleProgressBar);
-        // simpleProgressBar.setVisibility(View.INVISIBLE);
-        final ProgressBar progressBar;
+       // simpleProgressBar.setVisibility(View.INVISIBLE);
+         final ProgressBar progressBar;
         final int progressStatus = 0;
-        final TextView textView;
-        final Handler handler = new Handler();
+         final TextView textView;
+         final Handler handler = new Handler();
 
         final Button button = listItemView.findViewById(R.id.button01);
         progressBar = listItemView.findViewById(R.id.progressBar);
@@ -146,7 +113,7 @@ public class LstViewAdapter extends ArrayAdapter<MainActivity.Apps> {
 
 
 
-        //Dessert dessert = desserts.get(i);
+                //Dessert dessert = desserts.get(i);
 
 
 
@@ -155,7 +122,7 @@ public class LstViewAdapter extends ArrayAdapter<MainActivity.Apps> {
             @Override
             public void onClick(View v) {
 
-                new Thread(new Runnable() {
+                    new Thread(new Runnable() {
                     public void run() {
                         int progressStatus = 0;
                         while (progressStatus < 100 ) {
@@ -176,16 +143,32 @@ public class LstViewAdapter extends ArrayAdapter<MainActivity.Apps> {
                             } catch (InterruptedException e) {
                                 e.printStackTrace();
                             }
-                        }if(getItem(position).getDeveName().equals("Marconi")) {
-                                currentApi.getClickButton(3);
+                        }if(getItem(3) == currentApi) {
+                            currentApi.getClickButton(3);
 
                         }
-                        if(getItem(position).getDeveName().equals("Lanre")) {
-                            currentApi.getClickButton(0);}
-                    }
+                        }
                 }).start();
 
-            }
+
+
+
+
+
+//               if(getItem(0) == currentApi) {
+//
+//
+//
+//
+//                   currentApi.getClickButton(0);
+//
+//               }
+//
+//               if(getItem(1) == currentApi) {
+//                   currentApi.getClickButton(1);       }
+
+
+           }
 
         });
 

@@ -9,7 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import java.util.ArrayList;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
-//    ArrayList databaseInfo;
+    //    ArrayList databaseInfo;
     private static final String DB_NAME = "ChargingStation.Db";
     private static final String DB_TABLE = "Charging_Station";
     //columns
@@ -76,18 +76,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         String values=" ";
 
-       while (cursor.moveToNext()){
+        while (cursor.moveToNext()){
 //             values = "Tittle :" + cursor.getString(1)+ "\n "+  "Latitude :" + cursor.getString(2) + "\n " +"Longitude :" + cursor.getString(3);
 
 //           int id = cursor.getInt(0);
-           String tittle = cursor.getString(1);
-           double lat = cursor.getDouble(2);
-           double longg = cursor.getDouble(3);
-           String phone = cursor.getString(4);
-           chargeArray.add(new Charging(tittle,lat,longg,phone));
+            String tittle = cursor.getString(1);
+            double lat = cursor.getDouble(2);
+            double longg = cursor.getDouble(3);
+            String phone = cursor.getString(4);
+            chargeArray.add(new Charging(tittle,lat,longg,phone));
 
         }
         return chargeArray;
-        }
     }
-
+}
